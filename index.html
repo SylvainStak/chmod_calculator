@@ -1,0 +1,230 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<title>CHMOD Calculator</title>
+<!-- CSS -->
+<style>
+body{
+    font-family: arial;
+    background: #B2FEFA;
+    background: -webkit-linear-gradient(to right, #0ED2F7, #B2FEFA);
+    background: linear-gradient(to right, #0ED2F7, #B2FEFA);
+}
+
+button{
+    width: 75px;
+    height: 75px;
+    background-color: rgb(173,255,47);
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+td,th{    
+    border-radius: 20px;
+    text-align: center;
+    font-size: 25px;
+}   
+
+table{
+    float: left;    
+    margin: 20px;
+}
+
+h1:first-child{
+    text-align: center;
+    color: #e1ff00;
+    font-size: 40px;
+    -webkit-text-stroke: 2px black;
+}
+
+#chmod{
+    font-size: 60px;  
+    text-align: center;   
+}
+
+#checkers{
+    display:flex;
+    justify-content:center
+}
+footer{
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    font-style: italic;
+}
+</style>
+
+<!-- HTML -->
+<h1>CHMOD CALCULATOR</h1>
+
+<div id="checkers">
+<table cellspacing="0">
+    <tr>
+        <td colspan="3">USER</td>
+    </tr>
+
+    <tr>
+        <th>R</th>
+        <th>W</th>
+        <th>X</th>
+    </tr>
+
+    <tr>
+        <td><button id="ur" onclick="calc(this);"></button></td>
+        <td><button id="uw" onclick="calc(this);"></button></td>
+        <td><button id="ux" onclick="calc(this);"></button></td>
+    </tr>
+</table>
+
+<table cellspacing="0">
+    <tr>
+        <td colspan="3">GROUP</td>
+    </tr>
+
+    <tr>
+        <th>R</th>
+        <th>W</th>
+        <th>X</th>
+    </tr>
+
+    <tr>
+        <td><button id="gr" onclick="calc(this);"></button></td>
+        <td><button id="gw" onclick="calc(this);"></button></td>
+        <td><button id="gx" onclick="calc(this);"></button></td>
+    </tr>
+</table>
+
+<table cellspacing="0">
+    <tr>
+        <td colspan="3">OTHERS</td>
+    </tr>
+
+    <tr>
+        <th>R</th>
+        <th>W</th>
+        <th>X</th>
+    </tr>
+
+    <tr>
+        <td><button id="or" onclick="calc(this);"></button></td>
+        <td><button id="ow" onclick="calc(this);"></button></td>
+        <td><button id="ox" onclick="calc(this);"></button></td>
+    </tr>
+</table>
+</div>
+
+<h1 id="chmod"><span id="user">7</span><span id="group">7</span><span id="others">7</span></h1>
+
+<footer>Created by Sylvain Afonso Copyright&copy; 2019</footer>
+
+<script>
+    function calc(button){
+        var state;
+
+        //change color
+        //if red --> green
+        if(button.style.backgroundColor == 'rgb(244, 66, 66)'){
+            button.style.backgroundColor = 'rgb(173,255,47)';
+            state = true;
+        }           
+        //if green --> red
+        else{
+            button.style.backgroundColor = 'rgb(244, 66, 66)';
+            state = false;
+        }         
+
+
+        //The + sign is to parse the element type to (number)
+        var user = +document.getElementById('user').innerHTML;
+        var group = +document.getElementById('group').innerHTML;
+        var others = +document.getElementById('others').innerHTML;
+        var value = 0;
+        
+
+        switch(button.id) {
+            //USER
+            case 'ur':
+                if(state)
+                    value = user + 4;                
+                else
+                    value = user - 4;                
+
+                document.getElementById('user').innerHTML = value;                                
+                break;
+
+            case 'uw':
+                if(state)
+                    value = user + 2;                
+                else
+                    value = user - 2;                
+
+                document.getElementById('user').innerHTML = value;                                
+                break;
+
+            case 'ux':
+                if(state)
+                    value = user + 1;                
+                else
+                    value = user - 1;                
+
+                document.getElementById('user').innerHTML = value;                                
+                break;
+            //GROUP
+            case 'gr':
+                if(state)
+                    value = group + 4;                
+                else
+                    value = group - 4;                
+
+                document.getElementById('group').innerHTML = value;                                
+                break;
+
+            case 'gw':
+                if(state)
+                    value = group + 2;                
+                else
+                    value = group - 2;                
+
+                document.getElementById('group').innerHTML = value;                                
+                break;
+
+            case 'gx':
+                if(state)
+                    value = group + 1;                
+                else
+                    value = group - 1;                
+
+                document.getElementById('group').innerHTML = value;                                
+                break;            
+            //OTHERS
+            case 'or':
+                if(state)
+                    value = others + 4;                
+                else
+                    value = others - 4;                
+
+                document.getElementById('others').innerHTML = value;                                
+                break;
+
+            case 'ow':
+                if(state)
+                    value = others + 2;                
+                else
+                    value = others - 2;                
+
+                document.getElementById('others').innerHTML = value;                                
+                break;
+
+            case 'ox':
+                if(state)
+                    value = others + 1;                
+                else
+                    value = others - 1;                
+
+                document.getElementById('others').innerHTML = value;                                
+                break;
+            default: break;
+        }        
+    }
+</script>
